@@ -1,0 +1,44 @@
+﻿@model List<Course>
+
+<table class="table table-bordered table-striped table-hover">
+
+    <tr>
+    <thead>
+
+    <th scope="col" style=" color: var(--accent-color);">  name </th>
+    <th scope="col" style=" color: var(--accent-color);">  degree </th>
+    <th scope="col" style=" color: var(--accent-color);"> mindegree</th>
+    <th scope="col" style=" color: var(--accent-color);">  department Name </th
+    <th scope="col" style=" color: var(--accent-color);">  department manager </th>
+    <th scope="col" colspan="2" style=" color: var(--accent-color);">  manipulation </th>
+    </thead>
+    </tr>
+
+    <tbody>
+        @foreach (Course item in Model)
+        {
+            <tr>
+
+                <td>@item.name</td>
+                <td>@item.degree</td>
+                <td>@item.mindegree</td>
+                <td>@item.Department.Name</td>
+                <td>@item.Department.manager</td>
+
+                <td> <a class="btn btn-danger" asp-route-id="@item.id" asp-controller="Course" asp-action="delete">delete</a> </td>
+                <td> <a class="btn btn-warning" asp-route-id="@item.id" asp-controller="Course" asp-action="edit">update</a></td>
+
+            </tr>
+
+        }
+
+
+    </tbody>
+
+
+
+
+</table>
+
+<a class="btn btn-primary" style=" background-color: var(--accent-color);"
+   asp-action="insert" asp-controller="Course"><i class="fa-solid fa-plus"></i></a>

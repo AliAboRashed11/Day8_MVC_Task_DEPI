@@ -1,0 +1,39 @@
+﻿@model Course
+
+<table class="table table-bordered table-striped table-hover">
+
+    <tr>
+    <thead>
+
+    <th scope="col" style=" color: var(--accent-color);">  name </th>
+    <th scope="col" style=" color: var(--accent-color);">  degree </th>
+    <th scope="col" style=" color: var(--accent-color);"> mindegree</th>
+    <th scope="col" style=" color: var(--accent-color);">  department Name </th
+    <th scope="col" style=" color: var(--accent-color);">  department manager </th>
+
+    </thead>
+    </tr>
+
+    <tbody>
+
+            <tr>
+
+                <td>@Model.name</td>
+                <td>@Model.degree</td>
+                <td>@Model.mindegree</td>
+                <td>@Model.Department.Name</td>
+                <td>@Model.Department.manager</td>
+
+
+
+            </tr>
+
+
+
+    </tbody>
+
+
+
+
+</table>
+

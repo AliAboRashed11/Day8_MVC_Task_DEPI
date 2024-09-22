@@ -1,0 +1,51 @@
+﻿@model Login
+
+<div class=" container">
+    <div class="row">
+        <div class=" col-7">
+
+            @* why on earth when using asp-route-id it gave me values of id and ins.id equal to zero *@
+            <form method="post" class=" form-group my-5" asp-controller="Acc" asp-action="Login">
+
+
+
+
+                <div class=" form-group my-2">
+                    <label asp-for="Email"></label>
+                    <input class="form-control" asp-for="Email" />
+
+
+                </div>
+
+                <div class=" form-group my-2">
+                    <label asp-for="Password"> </label>
+                    <input class="form-control" asp-for="Password" />
+                    <span asp-validation-for="Password" class=" text-danger"></span>
+                </div>
+
+
+
+                <div class=" form-group my-2">
+
+                    <input type="submit" class="btn btn-success " name="save" value="save" />
+                </div>
+
+
+
+            </form>
+
+            <div my-2>
+                <a class=" btn btn-primary" asp-controller="Instructor" asp-action="getallinstructors">
+                    return to intructor's list
+                </a>
+            </div>
+
+
+        </div>
+        <div class=" col-5">
+        </div>
+
+    </div>
+
+
+</div>

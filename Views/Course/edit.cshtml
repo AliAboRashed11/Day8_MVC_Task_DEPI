@@ -1,0 +1,67 @@
+﻿@model CourseVm
+
+@{
+    SelectList departments = new SelectList(Model.Departmentvm, "id", "Name");
+}
+
+<div class=" container">
+    <div class="row">
+        <div class=" col-7">
+
+            @* why on earth when using asp-route-id it gave me values of id and ins.id equal to zero *@
+            <form method="post" class=" form-group my-5" asp-controller="Course" asp-action="edit" asp-route-id="@Model.id">
+
+
+                <div class=" form-group my-2">
+                    <label asp-for="name"> </label>
+                    <input class="form-control" asp-for="name" />
+                    <span asp-validation-for="name" class=" text-danger"></span>
+
+                </div>
+
+                <div class=" form-group my-2">
+                    <label asp-for="mindegree"></label>
+                    <input class=" form-control"  asp-for="mindegree" />
+                </div>
+                <div class=" form-group my-2">
+                    <label asp-for="degree"></label>
+                    <input class=" form-control"  asp-for="degree" />
+                    <span asp-validation-for="degree" class=" text-danger"></span>
+
+                </div>
+                <div class=" form-group my-2">
+
+                    <label asp-for="departmentid"></label>
+                    <select class=" form-control" asp-for="departmentid" asp-items="departments">
+                    </select>
+                </div>
+
+                <div class=" form-group my-2">
+
+                    <input type="submit" class="btn btn-success " name="save" value="save" />
+                </div>
+
+
+
+            </form>
+
+            <div my-2>
+                <a class=" btn btn-primary" asp-controller="Instructor" asp-action="getallinstructors">
+                    return to intructor's list
+                </a>
+            </div>
+
+
+        </div>
+        <div class=" col-5">
+        </div>
+
+    </div>
+
+
+</div>
+
+
+@section scripts2 {
+   <partial name="_ValidationScriptsPartial" >
+}

@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["mo"] = "Instructor";
+}
+@using Day6task.Models
+@model List<Instructor>
+
+<main class="container ">
+
+    @if (TempData["message"] != null)
+    {
+
+        <div class="alert alert-info text-center mb-4 fw-bolder">
+            @TempData["message"]
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center  fw-bolder">
+            Welcome To Instructor Page !
+        </div>
+
+    }
+
+    <div class="row mb-6">
+
+
+        @foreach (var Instructor in Model)
+        {
+            <partial name="_InstructorPartial" model="Instructor"></partial>
+
+        }
+
+        <a class="btn btn-primary row-cols-md-4" type="button" asp-action="insert" asp-asp-controller="instructor">
+            Add New Instructor
+        </a>
+
+    </div>
+
+    <div id="div1" >
+
+
+
+    </div>
+
+</main>
+
+@section scripts
+ {
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        function GetEmpData(id) {
+
+            event.preventDefault();
+
+            $.ajax({
+
+                url:"/Instructor/Get_instructor_byid/"+id,
+
+                success:function (vehicle) {
+
+                    $("#div1").html(vehicle);
+                };
+
+
+            });
+        };
+
+    </script>
+
+}

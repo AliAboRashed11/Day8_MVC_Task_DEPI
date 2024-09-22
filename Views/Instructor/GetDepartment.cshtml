@@ -1,0 +1,41 @@
+﻿@model List<DepartmentVM>
+@{
+	SelectList ahme = new SelectList(Model,"id","Name");
+}
+
+<select id="DepID" asp-items="ahme"  class="form-control" onchange="GetInstructors()" ></select>
+
+
+
+<select  class="form-control" >
+
+</select>
+
+
+
+@section scripts
+{
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        function GetInstructors(DepID) {
+            var deptid = $("#DepID").val();
+            console.log(deptid);
+
+            $.ajax({
+
+                url: "/Instructor/GetDepartment",
+                data: { "DepID"= deptid },
+                success: function (vehicle) {
+                    console.log(vehicle);
+
+                    // $("#div1").html(vehicle);
+                };
+
+
+            });
+        };
+
+    </script>
+
+}

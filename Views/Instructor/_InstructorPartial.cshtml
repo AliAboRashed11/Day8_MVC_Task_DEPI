@@ -1,0 +1,37 @@
+﻿@model Instructor
+
+
+
+<div class="col-md-6">
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">Instructor</strong>
+            <h3 class="mb-0">@Model.Name</h3>
+            <div class="mb-1 text-muted">@Model.Department.Name</div>
+            <p class="card-text mb-auto">
+            <p><strong>Adress:@Model.address</strong></p>
+            <strong>Course: @Model.Course.name</strong>
+
+            </p>
+
+            @*  href="" onclick="GetEmpData(@Model.id)" *@
+            <div>
+                <a asp-route-id="@Model.id" asp-controller="instructor" asp-action="Get_instructor_byid" class="btn btn-primary btn-sm">
+                    <i class="fas fa-info-circle"></i>
+                    Details
+                </a>
+                <a asp-route-id="@Model.id" asp-controller="instructor" asp-action="edit" class="btn btn-warning btn-sm">
+                    <i class="fas fa-edit"></i>
+                    Edit
+                </a>
+                <a asp-route-id="@Model.id" asp-controller="instructor" asp-action="delete" class="btn btn-danger btn-sm">
+                    <i class="fas fa-times"></i>
+                    Delete
+                </a>
+            </div>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <img src="~/images/@Model.imageurl" width="200" height="250" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+﻿
+
+@{
+    ViewData["mo"] = "Eidet Course";
+    SelectList departments = new SelectList(Model.Departmentvm, "id", "Name");
+    SelectList courses = new SelectList(Model.Coursevm, "id", "name");
+}
+@model instructorvm
+<main class="container mt-3">
+
+    <div class="row mb-3">
+
+        <h3 class="mb-4">Edit Instructor</h3>
+
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-warning text-center mb-5 fw-bolder">
+                @TempData["error"]
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning text-center mb-2 fw-bolder">
+                Welcame To Eidet Instructor Page !
+            </div>
+        }
+
+
+        <form method="post" asp-controller="Instructor" asp-action="edit" asp-route-id="@Model.id">
+
+            @* <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">ID</label>
+            <input type="number" class="form-control" name="ID">
+            </div> *@
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" asp-for="Name">Name</label>
+                <input type="text" class="form-control" asp-for="Name">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" asp-for="address">Adress</label>
+                <input type="text" class="form-control" asp-for="address">
+            </div>
+
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" asp-for="departmentid">Department</label>
+
+                <select asp-for="departmentid" asp-items="departments" class="form-select" aria-label="Default select example">
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" asp-for="courseid">Course</label>
+
+                <select asp-for="courseid" asp-items="courses" class="form-select" aria-label="Default select example">
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="formFile" class="form-label" asp-for="imageurl"></label>
+
+                <input type="file" class="form-control" asp-for="imageurl">
+            </div>
+
+            <a class="btn btn btn-primary" asp-controller="Instructor" asp-action="getallinstructors">
+                Back
+            </a>
+            <button type="submit" class="btn btn-primary">Save Instructor</button>
+
+        </form>
+
+
+
+
+    </div>
+
+</main>
+
+
+
+
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#departmentid').on('change', function () {
+                var departmentId = $(this).val();
+                var courseList = $('#courseid');
+
+                courseList.empty();
+                if (departmentId != '') {
+                    $.ajax({
+                        type: "GET",
+                        url: '/instructor/getcourses?departmentId=' + departmentId,
+                        success: function (courses) {
+                            $.each(courses, function (i, course) {
+                                courseList.append($('<option></option>').
+                                    attr('value', course.id).text(course.name));
+                            });
+                        }
+
+                        , error: function () {
+                            alert('something went wrong');
+                        }
+                    });
+
+                }
+
+            });
+        });
+
+    </script>
+}
